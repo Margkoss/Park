@@ -1,0 +1,10 @@
+body {
+    font-family: 'Ubuntu';font-size: 22px;
+}
+.navbar-fixed .nav-wrapper .brand-logo img {
+    height: 50px;
+    margin: 10px;
+}
+nav ul li a{
+    color: #695A69;
+}   

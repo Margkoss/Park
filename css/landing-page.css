@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300');
+
+body,html {
+    font-family: 'Ubuntu',sans-serif;
+    height: 100%;
+    margin:0;
+}
+input{
+    font-family: 'Ubuntu',sans-serif;
+}
+body {
+    background: #FFFFFF url('../Pictures/worldBackground.svg') no-repeat;
+    background-position: center; 
+}
+
+.admin-login{
+    text-align: center;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    font-size:150%;
+}
+
+a:active {
+    text-decoration: underline;
+}
+
+
+/* CSS GRIDS and media queries */
+#home-container{
+    display: grid;
+    grid-template-columns: 1fr,1fr,1fr,1fr;
+    grid-template-areas: 
+    ". left ."
+    ". right .";
+    height: 100%;
+}
+
+@media screen and (min-width: 760px){
+    #home-container{
+        display: grid;
+        grid-template-columns: .5fr,1fr,1fr,.5fr;
+        grid-gap: 10px;
+        grid-template-areas: ". left right .";
+        height: 100%;
+    }
+}
+
+#inner{
+    grid-area: left;
+    align-self: center;
+    justify-self: center;
+}
+
+#illustration{
+    grid-area: right;
+    align-self: center;
+    justify-self: center;
+}
+
+#Logo{
+    animation: fadeINleft 1s ease-in-out forwards;
+}
+
+h2 {
+    animation: fadeINleft 1s ease-in-out forwards;
+    margin-top: 2em;
+    color: #695A69;
+    text-decoration: none;
+}
+
+#location-thing{
+    animation: vibrate-1 7s linear infinite both;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+.cta {
+    animation: fadeIN 2s ease-in-out 1s forwards;
+    opacity: 0;
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #695A69;
+    border: none;
+    border-radius: 66px;
+    box-shadow: 0 9px #534853;
+    margin-top: 10em;
+  }
+  
+  .cta:hover {background-color: #fdd835}
+  
+  .cta:active {
+    background-color: #fdd835;
+    box-shadow: 0 4px #666;
+    transform: translateY(4px);
+  }
+
+  /* Landing Page animations */
+
+
+
+  @keyframes vibrate-1 {
+    0% {
+      -webkit-transform: translate(0);
+              transform: translate(0);
+    }
+    20% {
+      -webkit-transform: translate(-30px, 30px);
+              transform: translate(-30px, 30px);
+    }
+    40% {
+      -webkit-transform: translate(-30px, -30px);
+              transform: translate(-30px, -30px);
+    }
+    60% {
+      -webkit-transform: translate(30px, 30px);
+              transform: translate(30px, 30px);
+    }
+    80% {
+      -webkit-transform: translate(30px, -30px);
+              transform: translate(30px, -30px);
+    }
+    100% {
+      -webkit-transform: translate(0);
+              transform: translate(0);
+    }
+  }
+
+
+
+  @keyframes fadeIN{
+
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+  }
+
+
+  @keyframes fadeINleft{
+
+    from{
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0);
+    }
+  }

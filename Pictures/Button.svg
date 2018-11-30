@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 427 131">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #695a69;
+        stroke: #695a69;
+        stroke-width: 10px;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(-804 -721)">
+    <g id="Rectangle_1" data-name="Rectangle 1" class="cls-1" transform="translate(804 721)">
+      <rect class="cls-2" width="427" height="131" rx="65.5"/>
+      <rect class="cls-3" x="5" y="5" width="417" height="121" rx="60.5"/>
+    </g>
+  </g>
+</svg>
