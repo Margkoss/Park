@@ -7,7 +7,7 @@
     //Check if the session was set correctly 
     //or maliciously , and if so redirect
     if(isset($_SESSION['a_id'])){
-        echo "Welcome " . $_SESSION['a_first_name'];
+        echo "<h1>Welcome " . $_SESSION['a_first_name'] . "</h1>";
     }else{
         header("Location: ../main/?login=malicious");
         exit();   

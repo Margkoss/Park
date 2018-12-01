@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215.579 671.086">
+  <defs>
+    <style>
+      .cls-1, .cls-8 {
+        fill: #695a69;
+      }
+
+      .cls-2 {
+        fill: #ff4f19;
+      }
+
+      .cls-3 {
+        fill: #ffea8a;
+      }
+
+      .cls-4 {
+        fill: #6dc180;
+      }
+
+      .cls-5 {
+        fill: #fc0023;
+      }
+
+      .cls-6 {
+        fill: #ffdb2d;
+      }
+
+      .cls-7 {
+        fill: #5ca15d;
+      }
+
+      .cls-8 {
+        stroke: #695a69;
+      }
+
+      .cls-9 {
+        stroke: none;
+      }
+
+      .cls-10 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Group_1" data-name="Group 1" transform="translate(-852 -284)">
+    <path id="map-location-svgrepo-com" class="cls-1" d="M143.459,0C84.079,0,35.941,55.339,35.941,123.605s73.273,194.683,107.518,194.683S250.977,191.869,250.977,123.605,202.84,0,143.459,0Zm0,180.258c-31.259,0-56.6-29.131-56.6-65.067s25.34-65.066,56.6-65.066,56.6,29.132,56.6,65.066S174.718,180.258,143.459,180.258Z" transform="translate(816.059 636.797)"/>
+    <g id="traffic-light-svgrepo-com" transform="translate(703.789 284)">
+      <rect id="Rectangle_1" data-name="Rectangle 1" class="cls-1" width="215.579" height="512" transform="translate(148.211)"/>
+      <rect id="Rectangle_2" data-name="Rectangle 2" class="cls-1" width="107.789" height="512" transform="translate(256)"/>
+      <circle id="Ellipse_1" data-name="Ellipse 1" class="cls-2" cx="40.421" cy="40.421" r="40.421" transform="translate(215.579 67.368)"/>
+      <circle id="Ellipse_2" data-name="Ellipse 2" class="cls-3" cx="40.421" cy="40.421" r="40.421" transform="translate(215.579 215.579)"/>
+      <circle id="Ellipse_3" data-name="Ellipse 3" class="cls-4" cx="40.421" cy="40.421" r="40.421" transform="translate(215.579 363.79)"/>
+      <path id="Path_1" data-name="Path 1" class="cls-5" d="M296.421,107.787A40.421,40.421,0,0,0,256,67.366v80.842A40.42,40.42,0,0,0,296.421,107.787Z"/>
+      <path id="Path_2" data-name="Path 2" class="cls-6" d="M296.421,256A40.421,40.421,0,0,0,256,215.576v80.842A40.42,40.42,0,0,0,296.421,256Z"/>
+      <path id="Path_3" data-name="Path 3" class="cls-7" d="M296.421,404.208A40.422,40.422,0,0,0,256,363.787v80.845A40.422,40.422,0,0,0,296.421,404.208Z"/>
+    </g>
+    <g id="Rectangle_3" data-name="Rectangle 3" class="cls-8" transform="translate(904 764)">
+      <rect class="cls-9" width="116" height="72"/>
+      <rect class="cls-10" x="0.5" y="0.5" width="115" height="71"/>
+    </g>
+  </g>
+</svg>
