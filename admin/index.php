@@ -19,11 +19,13 @@
                 <input id="pwd" type="password" name="pwd" class="validate">
                 <label for="pwd">Password</label>
             </div class="input-field">
+            <br><br>
             <div class="center-align">
                 <button class="btn-large waves-effect waves-light yellow darken-1" type="submit" name="submit">Submit</button>
             </div>
             </form>
         </div>
+        <br><br>
         <div class="center-align hide-on-med-and-down">
             <a href="#">Forgot Password?</a>
         </div>

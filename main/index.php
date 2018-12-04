@@ -3,6 +3,15 @@
 //styling
 require('header.php');
 require('main-links.html');
+
+//Display an alert if a user tried to acess
+//a forbidden file
+if($_GET['login'] == "malicious"){
+    echo '<script type="text/javascript">',
+     'alert("i know what you did");',
+     '</script>'
+;
+}
 ?>
 
 

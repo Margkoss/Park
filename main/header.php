@@ -58,5 +58,5 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- Script for mobile framework initilization -->
-    <script src="../js/materialize-init.js"></script>
+    <script src="../js/materialize-init.js" defer></script>
 </head>
