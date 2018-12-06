@@ -34,19 +34,18 @@
         <p>Upload the KML file with the proper population data</p>
         <br><br>
         <div class="center">
-            <form method="post" action="#kmlparsers.php">
+            <form id="file-form" action="../include_files/kmlparser.inc.php" method="post">
                 <div class="file-field">
                 <div class="btn yellow darken-1 black-text">
-                    <span>File</span>
-                    <input type="file">
+                    <span>KML File</span>
+                    <input id="file_input" type="file" name="file">
                 </div>
                 <div class="file-path-wrapper">
                     <input class="file-path" type="text">
                 </div>
                 </div>
                 <div class="input-field">
-                    <button class="btn yellow darken-1 waves-effect waves-light black-text" 
-                    type="submit" name="submitKml">Submit</button>
+                    <button id="kml_submit" name="kml-submit" type="submit" class="btn yellow darken-1 waves-effect waves-light black-text">Submit</button>
                 </div>
             </form>
         </div>
@@ -75,4 +74,5 @@
     const tabss = document.querySelector('.tabs');
     M.Tabs.init(tabss,{swipeable:true});
 </script>
+<script src="../js/ajax_file-upload.js"></script>
 </html>

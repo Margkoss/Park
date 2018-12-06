@@ -10,7 +10,7 @@ session_start();
 if(isset($_POST['submit'])){
 
     //Connect to the database
-    include 'dataBaseHandler.inc.php';
+    include_once 'dataBaseHandler.inc.php';
 
     //Get the firstname,lastname and password from
     //the Post method 
