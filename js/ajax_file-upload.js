@@ -39,11 +39,13 @@ form.onsubmit = (event)=>{
         //Handler for when the request finishes
         xhr.onload = ()=>{
             if(xhr.status == 200){
+                // console.log(xhr.responseText);
                 console.log(xhr.responseText);
                 submitButton.innerHTML = "Submit";
             }
             else{
                 alert("An error occured");
+                submitButton.innerHTML = "Submit";
             }
         }
     }else{
