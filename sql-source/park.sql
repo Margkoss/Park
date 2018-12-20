@@ -26,3 +26,13 @@ CREATE TABLE admin (
 
 INSERT INTO admin (admin_first,admin_last,admin_pwd) VALUES
 ('Admin','Adminopoulos','Adminakias123');
+
+--GEO-DATA TABLE
+
+CREATE TABLE kml_data(
+	gid INT(11) NOT NULL PRIMARY KEY,
+    esye INT(11) NOT NULL,
+    population INT(11) NOT NULL,
+    coordinates TEXT NOT NULL,
+    centroid TEXT NOT NULL
+);

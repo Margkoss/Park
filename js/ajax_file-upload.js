@@ -39,9 +39,13 @@ form.onsubmit = (event)=>{
         //Handler for when the request finishes
         xhr.onload = ()=>{
             if(xhr.status == 200){
-                // console.log(xhr.responseText);
-                console.log(xhr.responseText);
-                submitButton.innerHTML = "Submit";
+                if(xhr.responseText == "OK"){
+                    var confirmation = _('confirmation_div');
+                    confirmation.innerHTML = "Success!";
+                    confirmation.classList.add('green','lighten-4');
+                    submitButton.innerHTML = "Submit";
+                }
+                
             }
             else{
                 alert("An error occured");

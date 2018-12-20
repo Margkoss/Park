@@ -1,4 +1,61 @@
 <?php
+//function for getting gid from description
+function getGid($descString){
+
+    $descString = strip_tags($descString);
+    preg_match("/gid: [0-9]{1,6}/",$descString,$gidNameValue);
+    $gid = explode(": ",$gidNameValue[0]);
+    $gid = end($gid);
+    return (int)$gid;
+
+}
+
+//function for getting ESYE_CODE from description
+function getEsyeCode($descString){
+
+    $descString = strip_tags($descString);
+    preg_match("/ESYE_CODE: [0-9]{1,6}/",$descString,$esyeNameValue);
+    $esye = explode(": ",$esyeNameValue[0]);
+    $esye = end($esye);
+    return (int)$esye;
+
+}
+
+//function for getting population from description
+function getPopulation($descString){
+
+    $descString = strip_tags($descString);
+    preg_match("/Population: [0-9]{1,6}/",$descString,$populationNameValue);
+    $population = explode(": ",$populationNameValue[0]);
+    $population = end($population);
+    return (int)$population;
+
+}
+
+
+//Function for finding the values of the KML description
+function findValues($descriptionString){
+
+    $gid = getGid($descriptionString);
+    $esye_code = getEsyeCode($descriptionString);
+
+    if(preg_match("/Population/",$descriptionString))
+    {
+        $population = getPopulation($descriptionString);
+    }
+    else
+    {
+        $population = 0;
+    }
+
+    $value['gid'] = $gid;
+    $value['esye'] = $esye_code;
+    $value['population'] = $population;
+
+    return $value;
+}
+
+
 //Function for calculating the area of a polygon
 function getAreaOfPolygon($polyCoordsArray)
 {
@@ -71,7 +128,8 @@ function LocateCentroid($polyCoords)
     $cx = -$cx / ( 6 * $area);
     $cy = -$cy / ( 6 * $area);
 
-    //Returning the centroid coordinates as an array
-    return array($cx,$cy);
+    //Returning the centroid coordinates as a string
+    $centroidCoordinates = (string)$cx." ".(string)$cy;
+    return $centroidCoordinates;
 }
 

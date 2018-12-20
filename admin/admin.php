@@ -47,6 +47,7 @@
                 <div class="input-field">
                     <button id="kml_submit" name="kml-submit" type="submit" class="btn yellow darken-1 waves-effect waves-light black-text">Submit</button>
                 </div>
+                <div id="confirmation_div"></div>
             </form>
         </div>
     </div>
@@ -62,7 +63,6 @@
         </form>
     </div>
 </section>
-
 
 <script>
     //initialize Materialize css tabs
