@@ -16,7 +16,6 @@
 
 <link rel="stylesheet" href="../css/admin-page.css">
 
-
 <section class="container section" id="tabss">
     <div>
         <ul class="tabs">
@@ -25,6 +24,9 @@
             </li>
             <li class="tab">
                 <a  href="#logout">Logout</a>
+            </li>
+            <li class="tab">
+                <a href="#database">Database</a>
             </li>
         </ul>
     </div>
@@ -62,14 +64,47 @@
             </div>
         </form>
     </div>
+    <div id="database">
+        <h2 class="yellow-text text-darken-1">Database</h2>
+        <p>Admin press button only if you know what you are doing!</p>
+        <br>
+        <div id="deletion_div"></div>
+        <div class="red lighten-3 data_drop">
+            <h2 class="red-text text-darken-4 center">DELETE DATABASE DATA</h2>
+            <div class="input-field center">
+                <a href="#warn"class="btn red darken-1 waves-effect waves-light black-text modal-trigger">delete</a>
+            </div>
+        </div>
+    </div>
 </section>
+<div class="modal" id="warn">
+    <div class="modal-content center">
+        <h4 class="red-text text-darken-4">Warning</h4>
+        <p class="left-align">
+            By pressing delete, you will remove all of the available population
+            data. Are you sure you want to do this?
+        </p>
+        <a href="#" class="modal-close btn yellow darken-1">Close</a>
+        <form action="../include_files/delete.inc.php" method="post" id="delete-form">
+            <div class="input-field">
+                <button id="delete" method="post" class="btn red darken-1 waves-effect waves-light" 
+                type="submit" name="delete">Delete</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <script>
     //initialize Materialize css tabs
-
     //KANTO SWIPE EINAI TELEIO
     const tabss = document.querySelector('.tabs');
     M.Tabs.init(tabss,{swipeable:true});
+
+    //Initialize Materialize css Modal
+    const modal = document.querySelector('.modal');
+    M.Modal.init(modal,{});
 </script>
 <script src="../js/ajax_file-upload.js"></script>
+<script src="../js/ajax_delete.js"></script>
 </html>

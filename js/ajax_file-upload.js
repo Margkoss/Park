@@ -42,7 +42,9 @@ form.onsubmit = (event)=>{
                 if(xhr.responseText == "OK"){
                     var confirmation = _('confirmation_div');
                     confirmation.innerHTML = "Success!";
-                    confirmation.classList.add('green','lighten-4');
+                    confirmation.classList.add('green','lighten-4','green-text','text-darken-3');
+                    confirmation.style.padding = "25px";
+                    confirmation.style.borderRadius = "10px";
                     submitButton.innerHTML = "Submit";
                 }
                 
