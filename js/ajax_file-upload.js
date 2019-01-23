@@ -40,11 +40,7 @@ form.onsubmit = (event)=>{
         xhr.onload = ()=>{
             if(xhr.status == 200){
                 if(xhr.responseText == "OK"){
-                    var confirmation = _('confirmation_div');
-                    confirmation.innerHTML = "Success!";
-                    confirmation.classList.add('green','lighten-4','green-text','text-darken-3');
-                    confirmation.style.padding = "25px";
-                    confirmation.style.borderRadius = "10px";
+                    M.toast({html: 'Success!', classes: 'rounded'})
                     submitButton.innerHTML = "Submit";
                 }
                 

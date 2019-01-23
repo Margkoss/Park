@@ -35,13 +35,8 @@ deleteForm.onsubmit = (event)=>
         {
             if(xhr.responseText == "DONE")
             {
-                var deletion = _('deletion_div');
-                    deletion.innerHTML = "Success!";
-                    deletion.classList.add('green','lighten-4','green-text','text-darken-3','center-align');
-                    deletion.style.padding = "5px";
-                    deletion.style.borderRadius = "10px";
-                    deletion.style.marginBottom = "5px";
-                    submitButton.innerHTML = "Submit";
+                M.toast({html: 'Deleted!', classes: 'rounded'})
+                submitButton.innerHTML = "Submit";
             }
         }
     }

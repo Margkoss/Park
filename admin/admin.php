@@ -49,7 +49,6 @@
                 <div class="input-field">
                     <button id="kml_submit" name="kml-submit" type="submit" class="btn yellow darken-1 waves-effect waves-light black-text">Submit</button>
                 </div>
-                <div id="confirmation_div"></div>
             </form>
         </div>
     </div>
@@ -68,7 +67,6 @@
         <h2 class="yellow-text text-darken-1">Database</h2>
         <p>Admin press button only if you know what you are doing!</p>
         <br>
-        <div id="deletion_div"></div>
         <div class="red lighten-3 data_drop">
             <h2 class="red-text text-darken-4 center">DELETE DATABASE DATA</h2>
             <div class="input-field center">

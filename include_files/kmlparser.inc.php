@@ -63,6 +63,7 @@
                 $sql = "INSERT INTO kml_data (gid, esye, population, coordinates, centroid) 
                         VALUES ('$gid', '$esye', '$population', '$coordinates', '$centroidCoords')";
                 mysqli_query($conn, $sql);
+                
             }
             echo "OK";
         }
