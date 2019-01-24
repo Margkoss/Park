@@ -4,7 +4,6 @@
 
 ?>
 
-<pre>
 
 <?php
 
@@ -17,18 +16,21 @@
 
     if ($resultCheck > 0) {
 
-        
+        $big_array = array();
+
         while ($row = mysqli_fetch_assoc($result)) {
             //Seperate the coordinates from each other in an array
             $break = explode(" " ,$row['coordinates']);
             
             //Seperate the array in to x,y coordinates
+            //and get them in reverse order
             for ($i=0; $i<sizeof($break); $i++) {
-                $break[$i] = explode("," , $break[$i]);
+                $stuff = explode("," , $break[$i]);
+                $break[$i] = array($stuff[1],$stuff[0]);
             }
-            //debug
-            print_r($break);
+            
+            array_push($big_array,$break);
         }
-
+        echo json_encode($big_array);
     }
 ?>

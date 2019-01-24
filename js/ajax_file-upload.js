@@ -25,6 +25,7 @@ form.onsubmit = (event)=>{
     if(file !== undefined){
         //Create formdata obj and add the file to 
         //the http request
+        
         var formData = new FormData();
         formData.append('file', file, file.name);
 

@@ -25,7 +25,7 @@ function getEsyeCode($descString){
 function getPopulation($descString){
 
     $descString = strip_tags($descString);
-    preg_match("/Population: [0-9]{1,6}/",$descString,$populationNameValue);
+    preg_match("/Population: [0-9]{1,10}/",$descString,$populationNameValue);
     $population = explode(": ",$populationNameValue[0]);
     $population = end($population);
     return (int)$population;

@@ -3,7 +3,7 @@
 //Plateia Georgiou Patras
 
 var mymap = L.map('map-container');
-mymap.setView([38.2458205, 21.7351358], 16);
+mymap.setView([40.639669, 22.934546], 16);
 
 //Tile layer initilization getting tile layers and attribution
 //With darker tiles if the time is over 9
@@ -27,13 +27,29 @@ if(time >= 6 && time <= 21){
 var body = document.getElementById("main-body");
 body.onresize = function() {
     var w = window.outerWidth;
-    if(w <= 1080){
+    if(w <= 1100){
         mymap.removeControl(mymap.zoomControl);
     }else{
         mymap.addControl(mymap.zoomControl);
     }
 };
 
+
+//Getting the polygons from the database
+//and draw them
+var xhr = new XMLHttpRequest();
+xhr.open('GET','../include_files/get_polygons.inc.php',true);
+xhr.send();
+
+xhr.onload = ()=>{
+
+    var polygons = JSON.parse(xhr.responseText);
+    for(i in polygons)
+    {
+        polygonLayer = new L.polygon(polygons[i],{stroke:false ,color: 'grey',fillOpacity: 0.4}).addTo(mymap);
+    }
+
+}
 
 //Creating the custom Park Logo marker
 
@@ -47,8 +63,8 @@ var parkIcon = L.icon({
 //Marker Layer
 var marker;
 
-//Adding the marker with the onclick event
-//callback function
+// Adding the marker with the onclick event
+// callback function
 mymap.on("click", function(e){
     if(marker){
         mymap.removeLayer(marker);
