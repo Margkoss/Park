@@ -2,35 +2,37 @@
 
     include_once ("dataBaseHandler.inc.php");
 
-?>
-
-
-<?php
-
 
     //Database query to get the coordinates column
-    $sql = "SELECT coordinates FROM kml_data;";
+    $sql = "SELECT * FROM kml_data;";
     $result = mysqli_query($conn, $sql);
     $resultCheck = mysqli_num_rows($result);
 
 
     if ($resultCheck > 0) {
-
-        $big_array = array();
+        //creating the geoJSON to be sent to javascript
+        $geoJSON = array("type"=>"FeatureCollection","features"=>array());
 
         while ($row = mysqli_fetch_assoc($result)) {
-            //Seperate the coordinates from each other in an array
-            $break = explode(" " ,$row['coordinates']);
             
-            //Seperate the array in to x,y coordinates
-            //and get them in reverse order
-            for ($i=0; $i<sizeof($break); $i++) {
-                $stuff = explode("," , $break[$i]);
-                $break[$i] = array($stuff[1],$stuff[0]);
+            //Retrieve the coordinates in the correct order from DB
+            $breakString = explode(" ",$row['coordinates']);
+            for($i=0 ; $i<sizeof($breakString) ; $i++)
+            {
+                $coordinates = explode(",",$breakString[$i]);
+                $breakString[$i] = array(floatval($coordinates[0]),floatval($coordinates[1]));
             }
-            
-            array_push($big_array,$break);
+
+            //Make the array that is pushed in the geoJSON features array
+            $arrayToBePushed = array("type"=>"Feature",
+                                    "properties"=>array("gid"=>$row['gid'],
+                                        "esye"=>$row['esye'],
+                                        "centroid"=>$row['centroid'],
+                                        "population"=>intval($row['population'])),
+                                    "geometry"=>array("type"=>"Polygon","coordinates"=>array($breakString)));
+
+            array_push($geoJSON['features'],$arrayToBePushed);
         }
-        echo json_encode($big_array);
+        echo json_encode($geoJSON);
     }
 ?>
