@@ -28,7 +28,8 @@
                                     "properties"=>array("gid"=>$row['gid'],
                                         "esye"=>$row['esye'],
                                         "centroid"=>$row['centroid'],
-                                        "population"=>intval($row['population'])),
+                                        "population"=>intval($row['population']),
+                                        "parkingSpots"=>intval($row['parkingSpots'])),
                                     "geometry"=>array("type"=>"Polygon","coordinates"=>array($breakString)));
 
             array_push($geoJSON['features'],$arrayToBePushed);

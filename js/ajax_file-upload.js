@@ -4,13 +4,32 @@ function _(el){
 }
 
 //setting the element variables
-var form = _('file-form');
-var fileSelect = _('file_input');
-var submitButton = _('kml_submit');
+var formKML = _('file-form');
+var fileSelectKML = _('file_input');
+var submitButtonKML = _('kml_submit');
+var sendKML = '../include_files/kmlparser.inc.php';
+var filePathKML = _('file-path-text')
+
+var formCSV = _('file-form2');
+var fileSelectCSV = _('file_input2');
+var submitButtonCSV = _('csv_submit');
+var sendCSV = '../include_files/csvparser.inc.php';
+var filePathCSV = _('file-path-text2')
+
 
 //Beggining of ajax upload to server onSubmit event
+formKML.onsubmit = (event)=>
+{
+    handleTheUpload(event,fileSelectKML,submitButtonKML,sendKML,filePathKML);
+}
 
-form.onsubmit = (event)=>{
+formCSV.onsubmit = (event)=>
+{
+    handleTheUpload(event,fileSelectCSV,submitButtonCSV,sendCSV,filePathCSV);
+}
+
+
+function handleTheUpload(event,fileSelect,submitButton,sendfile,filepath){
     //Prevent default behaviour of submiting form to php file 
     //so we can handle it asynchronously
     event.preventDefault();
@@ -31,7 +50,7 @@ form.onsubmit = (event)=>{
 
         //setup the request
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../include_files/kmlparser.inc.php',true);
+        xhr.open('POST',sendfile,true);
 
         //Finally send the request
         xhr.send(formData);
@@ -40,19 +59,23 @@ form.onsubmit = (event)=>{
         //Handler for when the request finishes
         xhr.onload = ()=>{
             if(xhr.status == 200){
-                if(xhr.responseText == "OK"){
+                console.log(xhr.responseText);
+                if(xhr.responseText == "Done"){
                     M.toast({html: 'Success!', classes: 'rounded'})
                     submitButton.innerHTML = "Submit";
+                    filepath.value = "";
                 }
                 
             }
             else{
-                alert("An error occured");
+                M.toast({html:'An error occured :(',classes:'rounded'});
                 submitButton.innerHTML = "Submit";
             }
         }
-    }else{
-        alert("WTF ENTER FILE");
+    }
+    else
+    {
+        M.toast({html:'You need to insert a file first!',classes:'rounded'});
         submitButton.innerHTML = "Submit";
     }
 }

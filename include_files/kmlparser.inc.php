@@ -40,11 +40,12 @@
 
                 //looking for Polygon data 
                 //gathering coordinates and centroids
+                //and number of parking spots per block based on the area
                 if(isset($pm->MultiGeometry->Polygon)){
                     
                     $coordinates = $pm->MultiGeometry->Polygon->outerBoundaryIs->LinearRing->coordinates;
                     $centroidCoords = locateCentroid($coordinates);
-
+                    $parkingSpots = calculateParkingSpots($coordinates);
                 }
 
                 //At this point coordinates in $coordinates,
@@ -59,13 +60,14 @@
                 $population = mysqli_real_escape_string($conn,$values['population']);
                 $coordinates = mysqli_real_escape_string($conn,$coordinates);
                 $centroidCoords = mysqli_real_escape_string($conn,$centroidCoords);
+                $parkingSpots = mysqli_real_escape_string($conn,$parkingSpots);
+                $distributionCurveNo = rand(1,3);
 
-                $sql = "INSERT INTO kml_data (gid, esye, population, coordinates, centroid) 
-                        VALUES ('$gid', '$esye', '$population', '$coordinates', '$centroidCoords')";
+                $sql = "INSERT INTO kml_data (gid, esye, population, coordinates, centroid, parkingSpots,distributionCurveNo) 
+                        VALUES ('$gid', '$esye', '$population', '$coordinates', '$centroidCoords', '$parkingSpots' ,'$distributionCurveNo')";
                 mysqli_query($conn, $sql);
-                
             }
-            echo "OK";
+            echo "Done";
         }
         else{
             http_response_code(403);

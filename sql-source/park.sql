@@ -34,5 +34,16 @@ CREATE TABLE kml_data(
     esye INT(11) NOT NULL,
     population INT(11) NOT NULL,
     coordinates TEXT NOT NULL,
-    centroid TEXT NOT NULL
+    centroid TEXT NOT NULL,
+    parkingSpots INT(11) NOT NULL,
+    distributionCurveNo INT(1) NOT NULL
+);
+
+--DISTRIBUTION CURVE DATA
+
+CREATE TABLE distributions(
+    hour INT(2) NOT NULL,
+    dist1 VARCHAR(4) NOT NULL,
+    dist2 VARCHAR(4) NOT NULL,
+    dist3  VARCHAR(4)
 );

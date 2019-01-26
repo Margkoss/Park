@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="../css/header.css" rel="stylesheet"></link>
     <div class="navbar-fixed">
-        <nav class="yellow darken-1">
+        <nav class="yellow darken-1" id="navbar">
             <div class="container">
                 <div class="nav-wrapper">
                     <a href="../main" class="brand-logo"><img src="../Pictures/ParkLogo.svg"></a>

@@ -1,4 +1,25 @@
 <?php
+//function for mapping the a value between 0-150
+function mapValue($area)
+{
+    switch(true)
+    {
+        case ($area >= 0 && $area < 3):
+            return rand(20,25);
+        break;
+        case ($area >=3 && $area < 6):
+            return rand(25,50);
+        break;
+        case ($area >=6 && $area <= 9):
+            return rand(50,100);
+        break;
+        default:
+            return rand(100,150);
+        break;
+    }
+}
+
+
 //function for getting gid from description
 function getGid($descString){
 
@@ -133,3 +154,23 @@ function LocateCentroid($polyCoords)
     return $centroidCoordinates;
 }
 
+//Function to calculate parking spots for each block
+function calculateParkingSpots($polycoords)
+{
+    $polyCoordsArray = explode(" ", $polycoords);
+
+    for($i=0 ; $i < sizeof($polyCoordsArray) ; $i++)
+    {
+        $polyCoordsArray[$i] = explode(",",$polyCoordsArray[$i]);
+        foreach($polyCoordsArray[$i] as $ypocoord)
+        {
+            $ypocoord = doubleval($ypocoord);
+        }
+    }
+    $area = getAreaOfPolygon($polyCoordsArray);
+    $area = explode('.',strval($area));
+    $area = intval($area[0]);
+
+    $parkingSpots = mapValue($area);
+    return $parkingSpots;
+}

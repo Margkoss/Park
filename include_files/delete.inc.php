@@ -5,6 +5,8 @@
         require_once('dataBaseHandler.inc.php');
         $sql = "TRUNCATE TABLE kml_data;";
         mysqli_query($conn, $sql);
+        $sql = "TRUNCATE TABLE distributions;";
+        mysqli_query($conn, $sql);
         echo "DONE"; 
     }
     else

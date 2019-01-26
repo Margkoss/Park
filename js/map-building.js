@@ -22,6 +22,8 @@ if(time >= 6 && time <= 21){
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="openmaps.com">OpenMaps</a>',
         maxZoom: 20
     }).addTo(mymap);
+    let navbar = document.getElementById('navbar');
+    navbar.className = "grey";
 }
 
 
