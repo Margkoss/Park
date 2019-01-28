@@ -1,12 +1,20 @@
 //Map container initialization
-//Randomly allocate Longtitude and Latitude over 
-//Plateia Georgiou Patras
-var sideNav2 = document.getElementById('slide-out');
-var instance = M.Sidenav.init(sideNav2,{})
-
-
 var mymap = L.map('map-container');
 mymap.setView([40.639669, 22.934546], 13);
+
+
+//Remove the default zoom buttons provided from leaflet js
+mymap.removeControl(mymap.zoomControl);
+
+//Custom zoom with the floating action button
+zoomIn = document.getElementById('zoom-in');
+zoomOut = document.getElementById('zoom-out');
+zoomIn.onclick = ()=>{
+    mymap.setZoom(mymap.getZoom() + 1);
+}
+zoomOut.onclick = ()=>{
+    mymap.setZoom(mymap.getZoom() - 1);
+}
 
 //Tile layer initilization getting tile layers and attribution
 //With darker tiles if the time is over 9
@@ -14,12 +22,10 @@ var d = new Date();
 var time = d.getHours();
 if(time >= 6 && time <= 21){
     L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=m4urAGMH66BnlUvKGOG9', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="openmaps.com">OpenMaps</a>',
         maxZoom: 20
     }).addTo(mymap);
 }else{
     L.tileLayer('https://maps.tilehosting.com/styles/darkmatter/{z}/{x}/{y}.png?key=m4urAGMH66BnlUvKGOG9', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="openmaps.com">OpenMaps</a>',
         maxZoom: 20
     }).addTo(mymap);
     let navbar = document.getElementById('navbar');
@@ -104,9 +110,6 @@ function onEachFeature(feature, layer) {
     });
 }
 
-
-//Removing the zoom buttons provided by leaflet.js
-mymap.removeControl(mymap.zoomControl);
 
 //Creating the custom Park Logo marker
 

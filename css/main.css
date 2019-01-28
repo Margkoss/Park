@@ -6,7 +6,8 @@ html, body {
 
 #map-container {   
     position: absolute;
-    top: 60px;
-    bottom: 0;
+    height:92%;
+    /* top: 1em;
+    bottom: 0; */
     width: 100%; 
 }
