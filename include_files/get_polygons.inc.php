@@ -2,10 +2,11 @@
 
     include_once ("dataBaseHandler.inc.php");
 
-
+    //Get the time from the server
+    $time = date("h");
     //Database query to get the coordinates column
-    $sql = "SELECT * FROM kml_data;";
-    $result = mysqli_query($conn, $sql);
+    $sqlKML = "SELECT * FROM kml_data;";
+    $result = mysqli_query($conn, $sqlKML);
     $resultCheck = mysqli_num_rows($result);
 
 

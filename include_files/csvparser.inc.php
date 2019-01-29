@@ -27,6 +27,15 @@
             {
                 $csv[$i] = explode(";",$csv[$i]);
             }
+            
+            for($i = 2; $i < sizeof($csv); $i++)
+            {
+                for($j = 1; $j < 4; $j++)
+                {
+                    $csv[$i][$j] = explode(",",$csv[$i][$j]);
+                    $csv[$i][$j] = floatval($csv[$i][$j][0].".".$csv[$i][$j][1]);
+                }
+            }
 
             $distributions = array();
 
@@ -43,7 +52,7 @@
                         VALUES ('$hour','$dist1','$dist2','$dist3')";
                 mysqli_query($conn, $sql);
                 
-            }
+                }
             echo "Done";
         }
         else

@@ -21,7 +21,7 @@
                     </a>
                     <ul class="right hide-on-med-and-down">
                         <li>
-                            <a href="#about">About</a>
+                            <a href="../about">About</a>
                         </li>
                         <li>
                             <a href="#report">Report Bugs</a>
