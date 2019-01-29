@@ -1,20 +1,20 @@
 <?php
-//function for mapping the a value between 0-150
+//function for mapping the a value between 20-250
 function mapValue($area)
 {
     switch(true)
     {
         case ($area >= 0 && $area < 3):
-            return rand(20,25);
+            return rand(20,70);
         break;
         case ($area >=3 && $area < 6):
-            return rand(25,50);
+            return rand(70,130);
         break;
         case ($area >=6 && $area <= 9):
-            return rand(50,100);
+            return rand(130,200);
         break;
         default:
-            return rand(100,150);
+            return rand(200,250);
         break;
     }
 }
