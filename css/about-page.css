@@ -1,0 +1,12 @@
+.section{
+	padding-top: 4vw;
+	padding-bottom: 4vw;
+}
+
+.tabs .indicator{
+	background-color: #1a237e;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active{
+	background: transparent;
+}

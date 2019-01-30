@@ -12,3 +12,8 @@ var fabInstance = M.FloatingActionButton.init(fab,{
     direction: 'left',
     hoverEnabled: true
 });
+
+//Initializing Parallax
+
+var parallax = document.getElementById('first');
+var parallaxinstance = M.Parallax.init(parallax, {} );
