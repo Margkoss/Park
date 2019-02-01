@@ -118,7 +118,7 @@
     <div class="modal-content center">
         <h4 class="red-text text-darken-4">Warning</h4>
         <p class="left-align">
-            By pressing delete, you will remove all of the available population
+            By pressing delete, you will remove all of the available population and distribution
             data. Are you sure you want to do this?
         </p>
         <a href="#" class="modal-close btn yellow darken-1">Close</a>

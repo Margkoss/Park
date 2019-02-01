@@ -47,20 +47,19 @@ xhr.onload = ()=>{
 
 
 
-//Function for changing the color according to population
-function getColor(p)
+//Function for changing the color according to taken percentage
+function getColor(t)
 {
-    return p > 100 ? '#ff0000':
-           p > 50 ? '#ffb400':
-           p > 30 ? '#ffce00':
-                    '#00ff04'
+    return t <= 0.59 ? '#008000':
+           t <= 0.84 ? '#fec832':
+                       '#990000';
 }
 
 //function for assigning style to each polygon
 function style(feature)
 {
     return {
-        fillColor : 'gray',
+        fillColor : getColor(feature.properties.taken),
         stroke : false,
         fillOpacity: 0.5
     };
@@ -69,10 +68,9 @@ function style(feature)
 //Function for when the polygons are hovered
 function highlightFeature(e)
 {
-    var layer = e.target;
+    let layer = e.target;
 
     layer.setStyle({
-        fillColor:getColor(layer.feature.properties.population),
         stroke:true,
         color: 'gray',
         fillOpacity: 0.9
@@ -93,10 +91,13 @@ function resetHighlight(e) {
 function showData(e){
     var gid = document.getElementById('gid');
     var population = document.getElementById('population');
-    var esye = document.getElementById('esye');
+    var taken = document.getElementById('taken');
+    var parkingSpots = document.getElementById('parking-spots')
     gid.innerHTML ='GID: ' + e.target.feature.properties.gid;
     population.innerHTML ='Population: ' + e.target.feature.properties.population;
-    esye.innerHTML ='Esye: ' + e.target.feature.properties.esye;
+    var takenPercent = Math.round(e.target.feature.properties.taken*10000)/100;
+    taken.innerHTML ='Taken: ' + takenPercent + "%";
+    parkingSpots.innerHTML = 'From Total: ' + e.target.feature.properties.parkingSpots;
     instance.open();
 }
 

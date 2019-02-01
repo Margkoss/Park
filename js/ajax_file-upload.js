@@ -18,15 +18,8 @@ var filePathCSV = _('file-path-text2')
 
 
 //Beggining of ajax upload to server onSubmit event
-formKML.onsubmit = (event)=>
-{
-    handleTheUpload(event,fileSelectKML,submitButtonKML,sendKML,filePathKML);
-}
-
-formCSV.onsubmit = (event)=>
-{
-    handleTheUpload(event,fileSelectCSV,submitButtonCSV,sendCSV,filePathCSV);
-}
+formKML.onsubmit = (event)=>{handleTheUpload(event,fileSelectKML,submitButtonKML,sendKML,filePathKML);}
+formCSV.onsubmit = (event)=>{handleTheUpload(event,fileSelectCSV,submitButtonCSV,sendCSV,filePathCSV);}
 
 
 function handleTheUpload(event,fileSelect,submitButton,sendfile,filepath){
@@ -59,17 +52,18 @@ function handleTheUpload(event,fileSelect,submitButton,sendfile,filepath){
         //Handler for when the request finishes
         xhr.onload = ()=>{
             if(xhr.status == 200){
-                console.log(xhr.responseText);
                 if(xhr.responseText == "Done"){
                     M.toast({html: 'Success!', classes: 'rounded'})
-                    submitButton.innerHTML = "Submit";
-                    filepath.value = "";
                 }
-                
+                submitButton.innerHTML = "Submit";
+                fileSelect.value ="";
+                filepath.value = "";
             }
             else{
                 M.toast({html:'An error occured :(',classes:'rounded'});
                 submitButton.innerHTML = "Submit";
+                fileSelect.value ="";
+                filepath.value = "";
             }
         }
     }

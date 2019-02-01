@@ -43,7 +43,7 @@ CREATE TABLE kml_data(
 
 CREATE TABLE distributions(
     hour INT(2) NOT NULL,
-    dist1 VARCHAR(4) NOT NULL,
-    dist2 VARCHAR(4) NOT NULL,
-    dist3  VARCHAR(4)
+    dist1 FLOAT(3,2) NOT NULL,
+    dist2 FLOAT(3,2) NOT NULL,
+    dist3  FLOAT(3,2)
 );

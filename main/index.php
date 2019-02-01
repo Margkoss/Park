@@ -16,9 +16,10 @@ require('main-links.html');
   <a href="#user"><img class="responsive-img" src="../Pictures/ParkLogo.svg"></a>
   </div>
     <li><a class="subheader">Info-Preview</a></li>
-    <li><a id="esye" href="#"></a></li>  
     <li><a id="gid" href="#"></a></li>
     <li><a id="population" href="#"></a></li>
+    <li><a id="taken" href="#"></a></li>
+    <li><a id="parking-spots" href="#"></a></li>
     <li><a class="subheader" id="subheader">Simulation</a></li>
     <div id="difference"></div>
 </ul>

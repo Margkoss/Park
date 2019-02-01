@@ -9,7 +9,16 @@ M.toast({html: 'Click any polygon to edit its data',classes:'rounded', displayLe
 
 //Changing what happens when admin clicks
 //by overriding the showData function
-function showData(e)
+// function showData(e)
+// {
+    
+// }
+
+function style(feature)
 {
-    alert(e.latlng);
+    return {
+        fillColor : 'gray',
+        stroke : false,
+        fillOpacity: 0.5
+    };
 }
