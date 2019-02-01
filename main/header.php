@@ -24,7 +24,7 @@
                             <a href="../about">About</a>
                         </li>
                         <li>
-                            <a href="#report">Report Bugs</a>
+                            <a href="../report">Report Bugs</a>
                         </li>
                         <li>
                             <a href="../admin/">Admin-Login</a>
