@@ -1,12 +1,36 @@
-.section{
-	padding-top: 4vw;
-	padding-bottom: 4vw;
-}
+.tabs .tab a{
+	color:#fdd835;
+	}
+	
+	.tabs .tab a:focus, .tabs .tab a:focus.active {
+	background-color: #fff3e0;
+	outline: none;
+	}
+	
+	.tabs .tab a:hover,tabs .tab a:active,.tabs .tab a.active {
+	background-color:transparent;
+	color:#fdd835;
+	}
+	
+	.tabs .indicator {
+	background-color:#fdd835;
+	}
+	
+	.data_drop{
+		padding: 25px;
+		border-radius: 10px;
+	}
+	
+	#Mylogo{
+		animation: fadeIN 2s ease-in-out forwards;
+	}
 
-.tabs .indicator{
-	background-color: #1a237e;
-}
+	@keyframes fadeIN{
 
-.tabs .tab a:focus, .tabs .tab a:focus.active{
-	background: transparent;
-}
+		from{
+			opacity: 0;
+		}
+		to{
+			opacity: 1;
+		}
+	  }

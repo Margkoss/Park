@@ -2,7 +2,7 @@
     require('../main/header.php')
 ?>
 
-<link rel="stylesheet" href="../css/about .css">
+<link rel="stylesheet" href="../css/about-page.css">
 
 
 <body>
@@ -10,13 +10,13 @@
   <!-- Here is the welcome title   -->
   <div class="divider"></div>
     <div class="section">
-      <h1 class="center-align red-text">About</h1>
+      <h1 class="center-align yellow-text text-darken-1">About</h1>
       <div class="container box calign-wrapper">
       <div class="col s12 l6 center-align">
         <h3>We proudly present :</h3>
       </div>
-      <div class="col s12 l6 center-align">
-      <img src="../Pictures/ParkLogo.jpg" alt="" height="150" width="150">
+      <div class="col s12 l6 center-align" id="Mylogo">
+      <img src="../Pictures/ParkLogo.svg" alt="" height="20%" width="20%">
       </div>
       </div>
       <div class="section">
@@ -60,7 +60,7 @@
      
 
       <!-- Parallaxes and team members -->
-     <h4 class="center-align">MEET THE TEAM!</h4>
+     <h4 class="center-align yellow-text text-darken-1">MEET THE TEAM!</h4>
 
      <div class="parallax-container">
       <div class="parallax" id="first"><img src="../Pictures/Mark.jpg"></div>
@@ -69,23 +69,23 @@
     <section class="container section">
         <div class="row">
           <div class="col s12 l4">
-            <h2 class="red-text text-darken-1">THIS IS MARKOS</h2>
+            <h2 class="yellow-text text-darken-1">THIS IS MARKOS</h2>
             <p>Markos's Quote/bio</p>
           </div>
           <div class="col s12 l6 offset-l2">
             <ul class="tabs">
               <li class="tab col s6">
-                <a href="#Facebook" class="yellow-text text-darken-1">Facebook</a>
+                <a href="#Facebook-Markos" class="yellow-text text-darken-1">Facebook</a>
               </li>
               <li class="tab col s6">
-                <a href="#GitHub" class="yellow-text text-darken-1">GitHub</a>
+                <a href="#GitHub-Markos" class="yellow-text text-darken-1">GitHub</a>
               </li>
             </ul>
-            <div class="col s12" id="Facebook">
+            <div class="col s12" id="Facebook-Markos">
             <p></p>
               <a target="_blank" href="https://www.facebook.com/profile.php?id=1604160445" class="blue-text text-darken-3">Μάρκος Σταματάκης</a>
             </div>
-            <div class="col s12" id="GitHub">
+            <div class="col s12" id="GitHub-Markos">
               <p></p>
               <a target="_blank" href="https://github.com/Margkoss" class="indigo-text text-lighten-3">Margkoss</a>
             </div>
@@ -108,17 +108,17 @@
           <div class="col s12 l6 offset-l2">
             <ul class="tabs">
               <li class="tab col s6">
-                <a href="#Facebook" class="yellow-text text-darken-1">Facebook</a>
+                <a href="#Facebook-Billy" class="yellow-text text-darken-1">Facebook</a>
               </li>
               <li class="tab col s6">
-                <a href="#GitHub" class="yellow-text text-darken-1">GitHub</a>
+                <a href="#GitHub-Billy" class="yellow-text text-darken-1">GitHub</a>
               </li>
             </ul>
-            <div class="col s12" id="Facebook">
+            <div class="col s12" id="Facebook-Billy">
             <p></p>
               <a target="_blank" href="https://www.facebook.com/billy.skabilly" class="blue-text text-darken-3">Billy Skabilly</a>
             </div>
-            <div class="col s12" id="GitHub">
+            <div class="col s12" id="GitHub-Billy">
               <p></p>
               <a target="_blank" href="https://github.com/skabillium" class="indigo-text text-lighten-3">skabillium</a>
             </div>
@@ -135,24 +135,24 @@
     <section class="container section">
         <div class="row">
           <div class="col s12 l4">
-            <h2 class="green-text text-darken-1">THIS IS THOMAS</h2>
+            <h2 class="yellow-text text-darken-1">THIS IS THOMAS</h2>
             <p>Thomas's Quote/bio</p>
           </div>
           <div class="col s12 l6 offset-l2">
             <ul class="tabs">
               <li class="tab col s6">
-                <a href="#Facebook" class="yellow-text text-darken-1">Facebook</a>
+                <a href="#Facebook-Tom" class="yellow-text text-darken-1">Facebook</a>
               </li>
               <li class="tab col s6">
-                <a href="#GitHub" class="yellow-text text-darken-1">GitHub</a>
+                <a href="#GitHub-Tom" class="yellow-text text-darken-1">GitHub</a>
               </li>
             </ul>
-            <div class="col s12" id="Facebook">
-            <p></p>
+            <div class="col s12" id="Facebook-Tom">
+            <br>
               <a target="_blank" href="https://www.facebook.com/tom.karaiskakis" class="blue-text text-darken-3">Tommen Karaiskakis</a>
             </div>
-            <div class="col s12" id="GitHub">
-              <p></p>
+            <div class="col s12" id="GitHub-Tom">
+              <br>
               <a target="_blank" href="https://github.com/TomKaraisk" class="indigo-text text-lighten-3">TomKaraisk</a>
             </div>
 
@@ -200,7 +200,7 @@
               </p>
             </div>
             <div class="input-field center">
-              <button class="btn">Submit</button>
+              <button class="btn yellow darken-1">Submit</button>
             </div>
           </form>
         </div>

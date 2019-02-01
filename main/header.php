@@ -43,10 +43,10 @@
             </div>
         </li>
         <li>
-            <a href="#about"><i class="material-icons">library_books</i> About</a>
+            <a href="../about"><i class="material-icons">library_books</i> About</a>
         </li>
         <li>
-            <a href="#report"><i class="material-icons">bug_report</i>Report Bugs</a>
+            <a href="../report"><i class="material-icons">bug_report</i>Report Bugs</a>
         </li>
         <li>
             <a href="../admin/"><i class="material-icons">person_outline</i> Admin-Login</a>
