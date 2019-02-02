@@ -5,7 +5,14 @@
 
     //Get athens time zone
     date_default_timezone_set('Europe/Athens');
-    $time = intval(date("H"));
+    if(isset($_GET['time'])){
+        $time = explode(":",$_GET['time']);
+        $time = intval($time[0]);
+    }else{
+        $time = intval(date("H"));
+    }
+    
+    
 
     //Database query to get the coordinates column
     $sqlKML = "SELECT * FROM kml_data;";

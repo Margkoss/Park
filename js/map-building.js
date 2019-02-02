@@ -1,3 +1,5 @@
+//define variable that will be the layer that contains the polygons
+var geojson;
 //Map container initialization
 var mymap = L.map('map-container');
 mymap.setView([40.639669, 22.934546], 13);
@@ -22,24 +24,35 @@ zoomOut.onclick = ()=>{
     mymap.setZoom(mymap.getZoom() - 1);
 }
 
-//Set the time for polygons with floating action button
-setTimeButton = document.getElementById('change-time');
-setTimeButton.onclick = ()=>{
-    
+//After map is set-up get the polyons from database
+getPolygons('../include_files/get_polygons.inc.php');
+
+//Add event listener to change time button
+changeTime = document.getElementById('check');
+changeTime.onclick = (event)=>{
+
+    event.preventDefault();
+    var timeValue = '../include_files/get_polygons.inc.php?time=' + document.getElementById('timepicker').value;
+    if(geojson){
+       mymap.removeLayer(geojson);
+    }
+    getPolygons(timeValue);
+
 }
 
-//Getting the polygons from the database
+//function for getting the polygons from the database
 //and draw them
-var xhr = new XMLHttpRequest();
-xhr.open('GET','../include_files/get_polygons.inc.php',true);
-xhr.send();
+function getPolygons(timeURL){
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET',timeURL,true);
+    xhr.send();
 
-xhr.onload = ()=>{
-    var polygons = JSON.parse(xhr.responseText);
-    console.log(polygons);
-    geojson = L.geoJSON(polygons,{style: style,onEachFeature: onEachFeature}).addTo(mymap);
+    xhr.onload = ()=>{
+        var polygons = JSON.parse(xhr.responseText);
+        geojson = L.geoJSON(polygons,{style: style,onEachFeature: onEachFeature});
+        geojson.addTo(mymap);
+    }
 }
-
 
 
 //Function for changing the color according to taken percentage

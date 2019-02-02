@@ -49,7 +49,13 @@ require('main-links.html');
   <div class="modal-content">
     <div class="title">
       <h4 class="yellow-text text-darken-1">Choose time to view parking space availability</h4>
-      <input type="text" class="timepicker" placeholder="Time">
+      <form action="get_polygons.inc.php" method="GET">
+        <input type="text" id='timepicker' class="timepicker" placeholder="Time">
+        <br>
+        <button id="check" class="yellow darken-1 btn waves-effect waves-light" type="submit" name="checkTime">Check Then
+          <i class="material-icons right">timer</i>
+        </button>
+      </form>
     </div>
   </div>
 </div>
