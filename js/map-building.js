@@ -3,6 +3,12 @@ var mymap = L.map('map-container');
 mymap.setView([40.639669, 22.934546], 13);
 
 
+//Tile layer initilization getting tile layers and attribution
+
+L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=m4urAGMH66BnlUvKGOG9', {
+    maxZoom: 20
+}).addTo(mymap);
+
 //Remove the default zoom buttons provided from leaflet js
 mymap.removeControl(mymap.zoomControl);
 
@@ -16,22 +22,11 @@ zoomOut.onclick = ()=>{
     mymap.setZoom(mymap.getZoom() - 1);
 }
 
-//Tile layer initilization getting tile layers and attribution
-//With darker tiles if the time is over 9
-var d = new Date();
-var time = d.getHours();
-if(time >= 6 && time <= 21){
-    L.tileLayer('https://maps.tilehosting.com/styles/streets/{z}/{x}/{y}.png?key=m4urAGMH66BnlUvKGOG9', {
-        maxZoom: 20
-    }).addTo(mymap);
-}else{
-    L.tileLayer('https://maps.tilehosting.com/styles/darkmatter/{z}/{x}/{y}.png?key=m4urAGMH66BnlUvKGOG9', {
-        maxZoom: 20
-    }).addTo(mymap);
-    let navbar = document.getElementById('navbar');
-    navbar.className = "grey";
+//Set the time for polygons with floating action button
+setTimeButton = document.getElementById('change-time');
+setTimeButton.onclick = ()=>{
+    
 }
-
 
 //Getting the polygons from the database
 //and draw them
@@ -41,8 +36,8 @@ xhr.send();
 
 xhr.onload = ()=>{
     var polygons = JSON.parse(xhr.responseText);
+    console.log(polygons);
     geojson = L.geoJSON(polygons,{style: style,onEachFeature: onEachFeature}).addTo(mymap);
-    // console.log(polygons);
 }
 
 

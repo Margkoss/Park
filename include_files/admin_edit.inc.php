@@ -54,16 +54,16 @@ if (isset($_POST['submit'])){
     } else {
         //Update both values in the database
         if ($distributionCurve==1 || $distributionCurve==2 || $distributionCurve==3){
-            $sql = "UPDATE kml_data SET population=$population, distributionCurveNo=$distributionCurve WHERE gid=$gid"
-
-            if (mysqli_query($conn, $sql)){
+            $sql = "UPDATE kml_data SET population=$population, distributionCurveNo=$distributionCurve WHERE gid=$gid";
+            
+            if(mysqli_query($conn, $sql)){
                 echo "Database updated successfully";
             }else{
                 echo "Error updating Database";
             }
             exit();
         }else{
-            echo "Invalid values"
+            echo "Invalid values";
             exit();
         }
     }
