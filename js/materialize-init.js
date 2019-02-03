@@ -4,7 +4,7 @@ M.Sidenav.init(sideNav,{});
 
 //Initialize the sidenav with the information
 var sideNav2 = document.getElementById('slide-out');
-var instance = M.Sidenav.init(sideNav2,{});
+var instance = M.Sidenav.init(sideNav2,{draggable:false});
 
 //Initializing the FAB
 var fab = document.getElementById('fab');

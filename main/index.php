@@ -17,19 +17,27 @@ require('main-links.html');
   <a href="#user"><img class="responsive-img" src="../Pictures/ParkLogo.svg"></a>
   </div>
     <li><a class="subheader">Info-Preview</a></li>
+    <div class="divider"></div>
+    <li><a href="#" id="time"></a></li>
     <li><a id="gid" href="#"></a></li>
     <li><a id="population" href="#"></a></li>
     <li><a id="taken" href="#"></a></li>
     <li><a id="parking-spots" href="#"></a></li>
-    <li><a class="subheader" id="subheader">Simulation</a></li>
+    <div class="divider"></div>
+    <li><a class="subheader" id="subheader">Tweak the parameters</a></li>
+    <div class="divider"></div>
     <div id="difference">
     <div class="row">
       <div class="col s8 offset-s1">
-        <input type="text" class="timepicker" placeholder="Time">
-        <form action="#">
-          <p class="range-field">
-            <input type="range" id="test5" min="0" max="100"/>
-          </p>
+        <form action="../include_files/findPark.inc.php" method="post">
+          <small>Choose Time</small>
+          <input type="text" class="timepicker" id="simTime" placeholder="Time">
+          <br>
+          <small>Choose walk distance</small>
+          <br><br>
+          <div id="test-slider"></div>
+          <br>
+          <button id="park" class="yellow darken-1 btn waves-effect waves-light" type="submit" name="park">Park around here</button>
         </form>
       </div>
     </div>
@@ -60,16 +68,17 @@ require('main-links.html');
   </div>
 </div>
 <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin="" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.1.0/nouislider.js"></script>
 <script src="../js/map-building.js" ></script>
 
 <?php
-if(isset($_SESSION['a_id']) && isset($_GET['login'])){
-  echo "<script src='../js/admin-map.js'></script>";
-}
-else if(!isset($_SESSION['a_id']) && isset($_GET['login']))
-{
-  echo "<script>M.toast({html:'I know what you did',classes:'rounded'});</script>";
-}
+  if(isset($_SESSION['a_id']) && isset($_GET['login'])){
+    echo "<script src='../js/admin-map.js'></script>";
+  }
+  else if(!isset($_SESSION['a_id']) && isset($_GET['login']))
+  {
+    echo "<script>M.toast({html:'I know what you did',classes:'rounded'});</script>";
+  }
 ?>
 </body>
 </html>

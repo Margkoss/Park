@@ -4,14 +4,9 @@ html, body {
     margin: 0;
 }
 
-body{
-    position: relative;
-}
-
 
 #map-container {   
-    position: relative;
-    height:92%;
+    height:93%;
     width: 100%; 
 }
 
@@ -25,4 +20,15 @@ timepicker-tick:hover { background: #fdd835 !important; }
 .timepicker-canvas-bg { fill: #fdd835 !important; }
 .timepicker-close{
     color: #fdd835;
+}
+
+#test-slider .noUi-connect{
+    background:#fdd835;
+}
+
+#test-slider .noUi-tooltip {
+    display: none;
+}
+#test-slider .noUi-active .noUi-tooltip {
+    display: block;
 }

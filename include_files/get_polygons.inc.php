@@ -25,7 +25,10 @@
         $geoJSON = array("type"=>"FeatureCollection","features"=>array());
 
         while ($row = mysqli_fetch_assoc($result)) {
-            
+            //Retrive the centroid coordinates
+            $centroidCoords = explode(" ",$row['centroid']);
+            $centroidCoords = array(floatval($centroidCoords[1]),floatval($centroidCoords[0]));
+
             //Retrieve the coordinates in the correct order from DB
             $breakString = explode(" ",$row['coordinates']);
             for($i=0 ; $i<sizeof($breakString) ; $i++)
@@ -53,8 +56,9 @@
             //Make the array that is pushed in the geoJSON features array
             $arrayToBePushed = array("type"=>"Feature",
                                     "properties"=>array("gid"=>$row['gid'],
+                                        "time"=>$time,
                                         "esye"=>$row['esye'],
-                                        "centroid"=>$row['centroid'],
+                                        "centroid"=>$centroidCoords,
                                         "population"=>intval($row['population']),
                                         "parkingSpots"=>intval($row['parkingSpots']),
                                         "taken"=>floatval($takenPer)),
