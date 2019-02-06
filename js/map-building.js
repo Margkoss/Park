@@ -1,4 +1,4 @@
-//define variable that will be the layer that contains the polygons
+//layer for all the polygons
 var geojson;
 //define variable that is a layer that contains the circle for witch
 //the user is willing to walk
@@ -45,6 +45,7 @@ changeTime.onclick = (event)=>{
     event.preventDefault();
     var timeValue = '../include_files/get_polygons.inc.php?time=' + document.getElementById('timepicker').value;
     if(geojson){
+        console.log(geojson);
        mymap.removeLayer(geojson);
     }
     getPolygons(timeValue);
@@ -65,7 +66,6 @@ function getPolygons(timeURL){
     }
 }
 
-
 //Function for changing the color according to taken percentage
 function getColor(t)
 {
@@ -76,7 +76,7 @@ function getColor(t)
 
 //function for assigning style to each polygon
 function style(feature)
-{
+{   
     return {
         fillColor : getColor(feature.properties.taken),
         stroke : false,
@@ -123,6 +123,8 @@ noUiSlider.create(stepSlider, {
 
 //Function for showing data on map
 function showData(e){
+    //zoom in to the requested block
+    mymap.fitBounds(e.target.getBounds());
     //Set the feature 
     var featureProperties = e.target.feature.properties;
 
@@ -131,8 +133,10 @@ function showData(e){
     var gid = document.getElementById('gid');
     var population = document.getElementById('population');
     var taken = document.getElementById('taken');
+    var available = document.getElementById('available');
     var parkingSpots = document.getElementById('parking-spots')
     var takenPercent = Math.round(e.target.feature.properties.taken*10000)/100;
+    available.innerHTML = 'Available: '+e.target.feature.properties.availableSpots;
     time.innerHTML = 'Hour: '+e.target.feature.properties.time;
     gid.innerHTML ='GID: ' + e.target.feature.properties.gid;
     population.innerHTML ='Population: ' + e.target.feature.properties.population;
@@ -169,21 +173,21 @@ function showData(e){
 
         //Loop through all the polygons to find the centroids in the walking distance
         //and put them in an array off coordinates
-        var includedArray = [];
+        
+        var clust = [];
         for(x in geojson._layers){
             if(walkRadCircle.contains(geojson._layers[x].feature.properties.centroid)){
-                includedArray.push(geojson._layers[x].feature.properties.centroid);
+                var blocks = {};
+                blocks.centroid = geojson._layers[x].feature.properties.centroid;
+                blocks.parkingSpots = geojson._layers[x].feature.properties.availableSpots;
+                clust.push(blocks);
             }
         }
-        includedArray = JSON.stringify(includedArray);
-        
-        var formdata = new FormData();
-        formdata.append('includedArray',includedArray);
-
+        // console.log(clust)
         var xhr = new XMLHttpRequest();
         xhr.open('POST','../include_files/performCluster.inc.php',true)
-
-        xhr.send(formdata);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+        xhr.send('includedArray='+JSON.stringify(clust));
 
         xhr.onload = ()=>{
             if(xhr.status == 200){
@@ -205,6 +209,23 @@ function onEachFeature(feature, layer) {
     });
 }
 
+
+//Function returns n random points in disk of radius r centered at c
+function randomCluster(n,r,c){
+    let x = c[0];
+    let y = c[1];
+
+    let points=[];
+    for(i = 0; i < n; i++){
+        let coords = [];
+        let theta = 2*Math.PI*Math.random();
+        let s = r*Math.random();
+        coords.push(x+s*Math.cos(theta));
+        coords.push(y+s*Math.sin(theta));
+        points.push(coords);
+    }
+    return points;
+}
 
 //Creating the custom Park Logo marker
 

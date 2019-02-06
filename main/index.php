@@ -22,6 +22,7 @@ require('main-links.html');
     <li><a id="gid" href="#"></a></li>
     <li><a id="population" href="#"></a></li>
     <li><a id="taken" href="#"></a></li>
+    <li><a id="available" href="#"></a></li>
     <li><a id="parking-spots" href="#"></a></li>
     <div class="divider"></div>
     <li><a class="subheader" id="subheader">Tweak the parameters</a></li>
@@ -69,7 +70,6 @@ require('main-links.html');
 </div>
 <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin="" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/12.1.0/nouislider.js"></script>
-<script src="../js/map-building.js" ></script>
 
 <?php
   if(isset($_SESSION['a_id']) && isset($_GET['login'])){
@@ -78,6 +78,8 @@ require('main-links.html');
   else if(!isset($_SESSION['a_id']) && isset($_GET['login']))
   {
     echo "<script>M.toast({html:'I know what you did',classes:'rounded'});</script>";
+  }else{
+    echo '<script src="../js/map-building.js" ></script>';
   }
 ?>
 </body>

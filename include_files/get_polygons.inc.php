@@ -48,16 +48,23 @@
             $demandAtThisTime = $constantDemand + intval(intval($row['parkingSpots'])*floatval($demandPercent[0]));
             $takenPer = $demandAtThisTime/intval($row['parkingSpots']);
             
+            //calculate available positions
+            if($demandAtThisTime >= intval($row['parkingSpots'])){
+                $available = 0;
+            }else{
+                $available = intval($row['parkingSpots']) - $demandAtThisTime;
+            }
+
             if($takenPer > 1)
             {
                 $takenPer = 1;
             }
-
             //Make the array that is pushed in the geoJSON features array
             $arrayToBePushed = array("type"=>"Feature",
                                     "properties"=>array("gid"=>$row['gid'],
                                         "time"=>$time,
                                         "esye"=>$row['esye'],
+                                        "availableSpots"=>$available,
                                         "centroid"=>$centroidCoords,
                                         "population"=>intval($row['population']),
                                         "parkingSpots"=>intval($row['parkingSpots']),
