@@ -124,7 +124,7 @@ noUiSlider.create(stepSlider, {
 //Function for showing data on map
 function showData(e){
     //zoom in to the requested block
-    mymap.fitBounds(e.target.getBounds());
+    mymap.flyToBounds(e.target.getBounds());
     //Set the feature 
     var featureProperties = e.target.feature.properties;
 
@@ -148,6 +148,7 @@ function showData(e){
     parkButton.onclick = (event)=>{
         event.preventDefault();
         
+
         var simTime = document.getElementById('simTime').value;
         var walkDist = stepSlider.noUiSlider.get();
         var featureCentroid = featureProperties.centroid;
@@ -183,7 +184,8 @@ function showData(e){
                 clust.push(blocks);
             }
         }
-        // console.log(clust)
+
+
         var xhr = new XMLHttpRequest();
         xhr.open('POST','../include_files/performCluster.inc.php',true)
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
@@ -191,6 +193,7 @@ function showData(e){
 
         xhr.onload = ()=>{
             if(xhr.status == 200){
+                mymap.flyTo(e.target.feature.properties.centroid,14);
                 console.log(xhr.responseText);
             }
         }
@@ -207,24 +210,6 @@ function onEachFeature(feature, layer) {
         mouseout: resetHighlight,
         click: showData
     });
-}
-
-
-//Function returns n random points in disk of radius r centered at c
-function randomCluster(n,r,c){
-    let x = c[0];
-    let y = c[1];
-
-    let points=[];
-    for(i = 0; i < n; i++){
-        let coords = [];
-        let theta = 2*Math.PI*Math.random();
-        let s = r*Math.random();
-        coords.push(x+s*Math.cos(theta));
-        coords.push(y+s*Math.sin(theta));
-        points.push(coords);
-    }
-    return points;
 }
 
 //Creating the custom Park Logo marker

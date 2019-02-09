@@ -30,7 +30,7 @@ require('main-links.html');
     <div id="difference">
     <div class="row">
       <div class="col s8 offset-s1">
-        <form action="../include_files/findPark.inc.php" method="post">
+        <form action="../include_files/performCluster.inc.php" method="post">
           <small>Choose Time</small>
           <input type="text" class="timepicker" id="simTime" placeholder="Time">
           <br>
@@ -77,6 +77,7 @@ require('main-links.html');
   }
   else if(!isset($_SESSION['a_id']) && isset($_GET['login']))
   {
+    echo '<script src="../js/map-building.js" ></script>';
     echo "<script>M.toast({html:'I know what you did',classes:'rounded'});</script>";
   }else{
     echo '<script src="../js/map-building.js" ></script>';
