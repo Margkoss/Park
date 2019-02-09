@@ -1,6 +1,41 @@
 <?php
 /******************CLUSTER FUNCTIONS****************** */
 
+//Function that returns cluster centroids
+function getClustercentroid($coordinates){
+    $sumX = 0;
+    $sumY = 0;
+
+    if(sizeof($coordinates) == 0){
+        return array();
+    }
+
+    for($i = 0; $i < sizeof($coordinates) ;$i++){
+        $sumX += $coordinates[$i]['x'];
+        $sumY += $coordinates[$i]['y'];
+    }
+
+    return array($sumX/sizeof($coordinates),$sumY/sizeof($coordinates));
+
+}
+
+//Helper function that sorts the points according to their unique id
+function sortPoints(&$cluster){
+
+    for($i = 0; $i < sizeof($cluster); $i++){
+
+        $cluster[$i] = explode(".",$cluster[$i]);
+        $cluster[$i] = $cluster[$i][1];
+
+    }
+    sort($cluster);
+    for($i = 0; $i < sizeof($cluster); $i++){
+        $cluster[$i] = "point.".$cluster[$i];
+    }
+    return $cluster;
+
+}
+
 //Helper function for getting the distance between two points 
 function getDistanceFromPoint($x1,$y1,$x2,$y2){
     return sqrt(pow($x2-$x1,2) + pow($y2-$y1,2));
@@ -16,7 +51,7 @@ function getRandomPoints($times,$radius,$center){
     $x = $center[0];
     $y = $center[1];
 
-    $radius = $radius;
+    $radius = $radius/11132000;  //Divide by approximate meters in one degree of lat/long coords 
 
     $points = array();
     

@@ -194,7 +194,12 @@ function showData(e){
         xhr.onload = ()=>{
             if(xhr.status == 200){
                 mymap.flyTo(e.target.feature.properties.centroid,14);
-                console.log(xhr.responseText);
+                var coords = JSON.parse(xhr.responseText);
+                if(coords.length > 0){
+                    addAMarker(JSON.parse(xhr.responseText));
+                }else{
+                    M.toast({html:'No available parking at this place at this time',classes:'rounded'});
+                }
             }
         }
         instance.close();
