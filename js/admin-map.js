@@ -118,7 +118,7 @@ function onEachFeature(feature, layer) {
 
 function showData(e){
     //zoom in to the requested block
-    mymap.fitBounds(e.target.getBounds());
+    mymap.flyToBounds(e.target.getBounds());
     //Set all of the information in the sideNav
     var time = document.getElementById('time');
     var gid = document.getElementById('gid');
@@ -135,11 +135,90 @@ function showData(e){
     parkingSpots.innerHTML = 'From Total: ' + e.target.feature.properties.parkingSpots;
 
     difference = document.getElementById('difference');
+    subheader = document.getElementById('subheader');
+    subheader.innerHTML = 'Change Population/Distribution';
     difference.innerHTML = 
     `
-    <form action="../include_files/admin_edit.inc.php" method="post">
-        
+    <form action="../include_files/admin_edit.inc.php" method="POST">
+        <div class="row">
+            <div class="input-field col s8 offset-s1">
+                <input id="ch_pop" type="text">
+                <label for="ch_pop">Population</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8 offset-s1">
+                <select id="mySelector">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">Distribution 1</option>
+                    <option value="2">Distribution 2</option>
+                    <option value="3">Distribution 3</option>
+                </select>
+                <label>Distribution Select</label>
+                <button id="submit" class="btn yellow darken-1 waves-effect waves-light" type="submit" name="submit">Submit
+                    <i class="material-icons right">send</i>
+                </button> 
+            </div>   
+        </div>
     </form>
     `;
+
+    //Initialize the select 
+    var select = document.querySelectorAll('select');
+    var selectorInstances = M.FormSelect.init(select,{});
+
+    //Event listener for the submit button
+    var submit = document.getElementById('submit');
+    submit.onclick = (event)=>{
+        event.preventDefault();
+
+        var selectorValue = document.getElementById('mySelector').value;
+        var inputValue = document.getElementById('ch_pop').value;
+
+        
+        //Check if both inputs are empty
+        if(selectorValue == "" && inputValue == ""){
+            M.toast({html:'Nothing to change',classes:'rounded', displayLength:4000});
+            return;
+        }
+
+        //Turn values to numbers
+        if(selectorValue != ""){
+            selectorValue = Number(selectorValue);
+        }
+        if(inputValue != ""){
+            inputValue = Number(inputValue);
+
+            //If the input is not empty, but the value is not a non-negative integer return
+            if(isNaN(inputValue) || !Number.isInteger(inputValue) || inputValue < 0){
+                document.getElementById('ch_pop').value = ""
+                M.toast({html:'Population needs to be a non-negative integer',classes:'rounded', displayLength:4000});
+                return;
+            }
+        }
+
+        //We reach this point if everything is ok with the inputs
+        var xhr = new XMLHttpRequest();
+        var params = 'submit=submit'+'&population='+inputValue+'&distribution_curve='+selectorValue+'&gid='+e.target.feature.properties.gid;
+
+        xhr.open('POST','../include_files/admin_edit.inc.php',true);
+        xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+
+        xhr.send(params)
+
+        xhr.onload = ()=>{
+            console.log(xhr.responseText);
+            if(xhr.responseText == "Database updated successfully"){
+                instance.close();
+                mymap.flyTo(e.target.feature.properties.centroid,14);
+                if(geojson){
+                    mymap.removeLayer(geojson);
+                }
+                getPolygons('../include_files/get_polygons.inc.php',false);
+                M.toast({html:'Databse updated succesfully',classes:'rounded', displayLength:4000});
+            }
+        }
+
+    }
     instance.open();
 }

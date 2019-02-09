@@ -1,9 +1,7 @@
 <?php
-
 //Check for if the script was called by the submit button
 //on the admin edit navbar
 if (isset($_POST['submit'])){
-
     //Connect to the database
     include_once 'databaseHandler.inc.php';
 
@@ -11,17 +9,24 @@ if (isset($_POST['submit'])){
     //the city block
     $gid = mysqli_real_escape_string($conn, $_POST['gid']);
     $population = mysqli_real_escape_string($conn, $_POST['population']);
-    $distributionCurve = mysqli_real_escape_string($conn, $_POST['distribution_curve']);
+    $distributionCurve = mysqli_real_escape_string($conn, $_POST['distribution_curve']);    
+
+    //Set a flag if $population = 0 and population to 1 so that
+    //empty($population) is false
+    if($population == 0){
+        $popFlag = true;
+        $population = 1;
+    }
 
     //Error handlers
     //Check if both of the inputs are empty
-    if (empty('$population') && empty('$distributionCurve')){
+    if (empty($population) && empty($distributionCurve)){
 
         //No need to update the database
         echo "Nothing to be changed";
         exit();
 
-    } elseif (empty('$population')) {
+    } elseif (empty($population)) {
         
         //Change the distribution curve assigned provided that it's of value
         //1, 2 or 3
@@ -39,7 +44,12 @@ if (isset($_POST['submit'])){
             echo "Invalid values";
         }
 
-    } elseif (empty('$distributionCurve')) {
+    } elseif (empty($distributionCurve)) {
+        
+        //reset population if $popFlag
+        if($population == 1 && $popFlag){
+            $population = 0;
+        }
 
         //Update the population of the block
         $sql = "UPDATE kml_data SET population=$population WHERE gid=$gid";
