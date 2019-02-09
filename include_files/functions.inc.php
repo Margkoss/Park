@@ -1,20 +1,55 @@
 <?php
-//function for mapping the a value between 20-250
+/******************CLUSTER FUNCTIONS****************** */
+
+//Helper function for getting the distance between two points 
+function getDistanceFromPoint($x1,$y1,$x2,$y2){
+    return sqrt(pow($x2-$x1,2) + pow($y2-$y1,2));
+}
+
+//Helper function that returns a random float
+function getRandomFloat(){
+    return mt_rand() / mt_getrandmax();
+}
+
+//Function that generates $times random points, within $radius meters of $center
+function getRandomPoints($times,$radius,$center){
+    $x = $center[0];
+    $y = $center[1];
+
+    $radius = $radius;
+
+    $points = array();
+    
+    for($i = 0; $i < $times; $i++){
+        $a = 2*M_PI*getRandomFloat();
+        $r = sqrt(getRandomFloat());
+
+        $miniClusters['x'] = ($radius*$r)*cos($a)+$x;
+        $miniClusters['y'] = ($radius*$r)*sin($a)+$y;
+
+        array_push($points,$miniClusters);
+    }
+    return $points;
+}
+
+
+/******************KML FUNCTIONS********************* */
+//function for mapping the a value between 20-120
 function mapValue($area)
 {
     switch(true)
     {
         case ($area >= 0 && $area < 3):
-            return rand(20,70);
+            return rand(20,40);
         break;
         case ($area >=3 && $area < 6):
-            return rand(70,130);
+            return rand(40,60);
         break;
         case ($area >=6 && $area <= 9):
-            return rand(130,200);
+            return rand(60,80);
         break;
         default:
-            return rand(200,250);
+            return rand(80,120);
         break;
     }
 }
