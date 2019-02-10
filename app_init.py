@@ -1,4 +1,10 @@
-import urllib.request
+#
+#
+#Script for database initialization so you don't write sql code
+#
+#
+import time
+import webbrowser 
 import mysql.connector
 from mysql.connector import errorcode
 
@@ -6,6 +12,8 @@ from mysql.connector import errorcode
 #INITIALIZE DATABASE PARAMS
 cnx = mysql.connector.connect(user='root', password='',host='127.0.0.1')
 databaseName = 'park' 
+cursor = cnx.cursor()
+
 
 #TABLES FOR THE PARK DB
 TABLES = {}
@@ -15,9 +23,10 @@ TABLES['admin'] = (
     "admin_first VARCHAR(256) NOT NULL,"
     "admin_last VARCHAR(256) NOT NULL,"
     "admin_pwd VARCHAR(256) NOT NULL"
-    ") ENGINE=InnoDB"
+    ");"
 )
 TABLES['kml_data'] = (
+    "CREATE TABLE kml_data ("
     "gid INT(11) NOT NULL PRIMARY KEY,"
     "esye INT(11) NOT NULL,"
     "population INT(11) NOT NULL,"
@@ -25,26 +34,23 @@ TABLES['kml_data'] = (
     "centroid TEXT NOT NULL,"
     "parkingSpots INT(11) NOT NULL,"
     "distributionCurveNo INT(1) NOT NULL"
-    ") ENGINE=InnoDB"
+    ");"
 )
 TABLES['distributions']=(
+    "CREATE TABLE distributions ("
     "hour INT(2) NOT NULL,"
     "dist1 FLOAT(3,2) NOT NULL,"
     "dist2 FLOAT(3,2) NOT NULL,"
     "dist3  FLOAT(3,2)"
-    ") ENGINE=InnoDB"
+    ");"
 )
 
-
-cursor = cnx.cursor()
-flag=False
-
-while not flag:
+while True:
     print("Do you want to auto setup your database? (Y/N)")
-    x = input()
+    readVar = input()
     print()
 
-    if x == "Y" or x == "y"  :
+    if readVar == "Y" or readVar == "y"  :
 
         print("Starting...")
 
@@ -74,18 +80,35 @@ while not flag:
         for table_name in TABLES:
             table_description = TABLES[table_name]
             
+            try:
+                print("Creating table {}: ".format(table_name),end='')
+                cursor.execute(table_description)
+            except mysql.connector.Error as err:
+                print(err.msg)
 
+            print("Success!")
+        
+        #Admin table is harcoded in the project
+        cursor.execute("INSERT INTO admin (admin_first,admin_last,admin_pwd) VALUES ('Admin','Adminopoulos','Adminakias123');")
+        cnx.commit()
+        print("Admin added\n")
 
-        flag=True
-    elif x == "N" or x == "n" :
+        #Final message
+        print("All done! To populate the database upload kml and csv files from admin page in Park!")
+        
+        webbrowser.open('localhost/Park')
+        break
+        
+    elif readVar == "N" or readVar == "n" :
 
 
         print("Okay bro cya")
-        exit()
+        break
     else :
 
 
         print("Please select from y or n\n")
 
-
+time.sleep(1.5)
 cnx.close()
+exit()
