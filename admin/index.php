@@ -4,6 +4,10 @@
 
 <link rel="stylesheet" href="../css/admin-login.css">
 <body>
+    <h3 class="center-align">
+        Admin Login
+    </h3>
+    <br>
     <div class="container">
         <div class="form-container">
             <form action="../include_files/login.inc.php" method="POST">
@@ -26,9 +30,6 @@
             </form>
         </div>
         <br><br>
-        <div class="center-align hide-on-med-and-down">
-            <a href="#">Forgot Password?</a>
-        </div>
     </div>
 </body>
 </html>
