@@ -147,7 +147,8 @@ function showData(e){
     var parkButton = document.getElementById('park');
     parkButton.onclick = (event)=>{
         event.preventDefault();
-        
+        //Zoom out animation
+        mymap.flyTo(e.target.feature.properties.centroid,14);
 
         var simTime = document.getElementById('simTime').value;
         var walkDist = stepSlider.noUiSlider.get();
@@ -177,12 +178,16 @@ function showData(e){
         
         var clust = [];
         for(x in geojson._layers){
+
             if(walkRadCircle.contains(geojson._layers[x].feature.properties.centroid)){
+
                 var blocks = {};
                 blocks.centroid = geojson._layers[x].feature.properties.centroid;
                 blocks.parkingSpots = geojson._layers[x].feature.properties.availableSpots;
                 clust.push(blocks);
+
             }
+
         }
 
 
@@ -193,12 +198,23 @@ function showData(e){
 
         xhr.onload = ()=>{
             if(xhr.status == 200){
-                mymap.flyTo(e.target.feature.properties.centroid,14);
+
                 var coords = JSON.parse(xhr.responseText);
+
                 if(coords.length > 0){
-                    addAMarker(JSON.parse(xhr.responseText));
+
+                    addAMarker(coords,
+                        `<b>Parkging Suggestion</b>
+                        <br>
+                        <p><b>x</b>: ${coords[0]}, <b>y</b>: ${coords[1]}</p>
+                        `);
+                    distance = Math.round(getDistance(featureCentroid,coords) * 100) / 100;
+                    M.toast({html:`If you are willing to walk ${distance} meters... We suggest you look here!`,classes:'rounded'});
+                    
                 }else{
+
                     M.toast({html:'No available parking at this place at this time',classes:'rounded'});
+
                 }
             }
         }
@@ -217,6 +233,29 @@ function onEachFeature(feature, layer) {
     });
 }
 
+//Helper functions to calculate distance from polar coordinates
+function getDistance(origin, destination) {
+    // return distance in meters
+    var lon1 = toRadian(origin[1]),
+        lat1 = toRadian(origin[0]),
+        lon2 = toRadian(destination[1]),
+        lat2 = toRadian(destination[0]);
+
+    var deltaLat = lat2 - lat1;
+    var deltaLon = lon2 - lon1;
+
+    var a = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon/2), 2);
+    var c = 2 * Math.asin(Math.sqrt(a));
+    var EARTH_RADIUS = 6371;
+    return c * EARTH_RADIUS * 1000;
+}
+
+function toRadian(degree) {
+    return degree*Math.PI/180;
+}
+
+
+
 //Creating the custom Park Logo marker
 
 var parkIcon = L.icon({
@@ -229,8 +268,10 @@ var parkIcon = L.icon({
 //Marker Layer
 var marker;
 
-// Adding the marker with the onclick event
-// callback function
-function addAMarker(coords){
-    marker = new L.marker(coords, {icon: parkIcon}).bindPopup('included').addTo(mymap);
+// Adding marker helper function
+function addAMarker(coords,popupText){
+    if(marker){
+        mymap.removeLayer(marker)
+    }
+    marker = new L.marker(coords, {icon: parkIcon}).bindPopup(popupText).addTo(mymap);
 }
