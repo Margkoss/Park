@@ -29,7 +29,7 @@
     <!-- This is the first paragraph(drive,intentions etc) -->
     <section class="container section">
     <div class="divider"></div>
-    <p class="center-align"><i>This is probably a Beta...</i></p>
+    <p class="center-align"><i>This is a beta version... Sit tight we are launching soon!</i></p>
     </section>
       
 
@@ -70,7 +70,7 @@
         <div class="row">
           <div class="col s12 l4">
             <h2 class="yellow-text text-darken-1">THIS IS MARKOS</h2>
-            <p>Markos's Quote/bio</p>
+            <p>"Main Bro"</p>
           </div>
           <div class="col s12 l6 offset-l2">
             <ul class="tabs">
@@ -103,7 +103,7 @@
         <div class="row">
           <div class="col s12 l4">
             <h2 class="yellow-text text-darken-1">THIS IS BILLY</h2>
-            <p>Billy's Quote/bio</p>
+            <p>"Really buff dude"</p>
           </div>
           <div class="col s12 l6 offset-l2">
             <ul class="tabs">
@@ -136,7 +136,7 @@
         <div class="row">
           <div class="col s12 l4">
             <h2 class="yellow-text text-darken-1">THIS IS THOMAS</h2>
-            <p>Thomas's Quote/bio</p>
+            <p>"Look mum no angular"</p>
           </div>
           <div class="col s12 l6 offset-l2">
             <ul class="tabs">
