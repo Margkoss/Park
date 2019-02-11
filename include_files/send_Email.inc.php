@@ -1,5 +1,10 @@
 <?php
 
+if(!isset($_POST['name'])||!isset($_POST['email'])||!isset($_POST['message'])){
+    echo "FATAL";
+    exit;
+}
+
 #Submit button press check
 if (isset($_POST['submit']))
 {
@@ -24,11 +29,11 @@ if (isset($_POST['submit']))
     $mail->Username   = "park.reportbug@gmail.com"; // SMTP account username 
     $mail->Password   = "tmbpark2019";        // SMTP account password 
     $mail->From = $email;
-    $mail->FromName = $name;
+    $mail->FromName = "no-reply@park.com";
     $mail->AddAddress($email); 
     $mail->IsHTML(true);
     $mail->Subject = 'Park Bug Report';
-    $mail->Body    =  'Your email has been sent to one of our administrators and is currently waiting to be reviewed! Thank you for making Park better.';
+    $mail->Body    =  'Dear '.$name.',<br>Your message:"<b> '.$msg.' </b>" has been sent to one of our administrators and is currently waiting to be reviewed! Thank you for making Park better.';
 
 
     #Error Message Display Info
