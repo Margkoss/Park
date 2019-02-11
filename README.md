@@ -6,7 +6,6 @@ where a user could enter choose a place he wants to park and the system would pr
 according to the time of day. An admin can also tweak the system's data.
 
 ##Dependencies
-======
 
 All you need to setup *Park* is a basic AMP stack
 ####Apache:  
