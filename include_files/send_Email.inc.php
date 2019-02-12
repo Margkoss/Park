@@ -26,8 +26,8 @@ if (isset($_POST['submit']))
     $mail->SMTPAuth   = true;                  // enable SMTP authentication
     $mail->Port       = 465;                    // set the SMTP port for the GMAIL server
     $mail->SMTPSecure = 'ssl';
-    $mail->Username   = "park.reportbug@gmail.com"; // SMTP account username 
-    $mail->Password   = "tmbpark2019";        // SMTP account password 
+    $mail->Username   = ""; // Your email here
+    $mail->Password   = "";        // Your email's password here
     $mail->From = $email;
     $mail->FromName = "no-reply@park.com";
     $mail->AddAddress($email); 
