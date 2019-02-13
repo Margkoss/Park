@@ -37,9 +37,19 @@ if (isset($_POST['submit']))
 
 
     #Error Message Display Info
-    if(!$mail->Send())
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-    exit;
+    if(!$mail->Send()){
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+        exit;
+    } else {
+        include_once 'dataBaseHandler.inc.php';
+        $sql = "INSERT INTO email(name, email, message) VALUES ($name, $email, $message)";
+
+        if(mysqli_query($conn, $sql)){
+            echo "Database updated successfully";
+        }else{
+            echo "Error updating Database";
+        }
+    }
 
 }

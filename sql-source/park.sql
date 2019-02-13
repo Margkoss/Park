@@ -47,3 +47,12 @@ CREATE TABLE distributions(
     dist2 FLOAT(3,2) NOT NULL,
     dist3  FLOAT(3,2)
 );
+
+-- EMAIL SENDER INFO
+
+CREATE TABLE email(
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20),
+    email VARCHAR(30),
+    message MEDIUMTEXT
+);
