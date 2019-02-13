@@ -3,7 +3,7 @@
 //on the admin edit navbar
 if (isset($_POST['submit'])){
     //Connect to the database
-    include_once 'databaseHandler.inc.php';
+    include_once 'dataBaseHandler.inc.php';
 
     //Get the population and distribution curve assigned to 
     //the city block

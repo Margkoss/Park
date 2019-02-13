@@ -48,7 +48,7 @@ if(isset($_POST['submit'])){
             if($row = mysqli_fetch_assoc($result)){
 
                 //check if passwords match up
-                $password_check = ($pwd == $row['admin_pwd']);
+                $password_check = password_verify($pwd, $row['admin_pwd']);
                 if($password_check == false){
                     //rerout to login
                     header("Location: ../admin/?login=wrpwd");

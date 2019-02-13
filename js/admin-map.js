@@ -199,6 +199,7 @@ function showData(e){
 
         //We reach this point if everything is ok with the inputs
         var xhr = new XMLHttpRequest();
+        console.log(inputValue, selectorValue, e.target.feature.properties.gid);
         var params = 'submit=submit'+'&population='+inputValue+'&distribution_curve='+selectorValue+'&gid='+e.target.feature.properties.gid;
 
         xhr.open('POST','../include_files/admin_edit.inc.php',true);

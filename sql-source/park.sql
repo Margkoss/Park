@@ -25,7 +25,7 @@ CREATE TABLE admin (
 --INSERT THE ONE AND ONLY TEST ADMIN (PASSWORD UNHASHED)
 
 INSERT INTO admin (admin_first,admin_last,admin_pwd) VALUES
-('Admin','Adminopoulos','Adminakias123');
+('Admin','Adminopoulos','$2y$10$M61Vob6ywTKM6WkzPPtaLOXZnSSfHFArZTJPUcVD5PIt1crcwNyoe');
 
 --GEO-DATA TABLE
 

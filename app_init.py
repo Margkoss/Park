@@ -89,7 +89,7 @@ while True:
             print("Success!")
         
         #Admin table is harcoded in the project
-        cursor.execute("INSERT INTO admin (admin_first,admin_last,admin_pwd) VALUES ('Admin','Adminopoulos','Adminakias123');")
+        cursor.execute("INSERT INTO admin (admin_first,admin_last,admin_pwd) VALUES ('Admin','Adminopoulos','$2y$10$M61Vob6ywTKM6WkzPPtaLOXZnSSfHFArZTJPUcVD5PIt1crcwNyoe');")
         cnx.commit()
         print("Admin added\n")
 
